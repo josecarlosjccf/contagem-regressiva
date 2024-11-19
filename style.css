@@ -61,8 +61,8 @@ body {
 }
 
 .monitor-screen {
-    width: 120%;
-    height: 120%;
+    width: 115%;
+    height: 115%;
     display: flex;
     justify-content: center;
     align-items: center;
