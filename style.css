@@ -38,8 +38,8 @@ body {
 }
 
 .monitor {
-    width: 110%;
-    height: 110%;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(145deg, #333, #1c1c1c);
     border-radius: 15px;
     box-shadow: 
@@ -61,8 +61,8 @@ body {
 }
 
 .monitor-screen {
-    width: 110%;
-    height: 110%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
