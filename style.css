@@ -6,11 +6,13 @@
 
 body {
     min-height: 100vh;
-    background: #111;
+    background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
+    perspective: 1500px;
+    padding: 50px;
+    overflow: hidden;
 }
 
 .computer {
@@ -18,46 +20,48 @@ body {
     height: 800px;
     position: relative;
     transform-style: preserve-3d;
+    transform: rotateX(5deg);
 }
 
-/* Monitor Base */
-.computer::before {
-    content: '';
-    position: absolute;
-    bottom: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 200px;
-    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-    clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* Monitor Base Bottom */
-.computer::after {
-    content: '';
-    position: absolute;
-    bottom: -140px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
-    height: 20px;
-    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
+/* Monitor Design */
 .monitor-wrapper {
     width: 100%;
-    height: 100%;
-    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    height: 85%;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
     border-radius: 20px;
     padding: 15px;
     position: relative;
     box-shadow: 
         0 30px 60px rgba(0, 0, 0, 0.5),
         0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+
+/* Monitor Stand */
+.monitor-wrapper::before {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 180px;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Monitor Base */
+.monitor-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -170px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 20px;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .monitor-frame {
@@ -103,6 +107,7 @@ body {
     animation: scan 10s linear infinite;
 }
 
+/* Screen Vignette */
 .monitor-screen::after {
     content: '';
     position: absolute;
@@ -118,8 +123,99 @@ body {
     pointer-events: none;
 }
 
-/* Power Button & LED */
-.monitor-wrapper::before {
+/* Keyboard */
+.keyboard {
+    width: 95%;
+    height: 120px;
+    margin: 20px auto 0;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 10px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    gap: 5px;
+    transform: rotateX(45deg);
+    transform-style: preserve-3d;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 2px rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+/* Keys */
+.keyboard::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    gap: 5px;
+}
+
+.keyboard::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 15px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+    border-radius: 3px;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Key Layout */
+.key {
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 12px;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    height: 30px;
+    transform: translateZ(2px);
+    transition: all 0.1s ease;
+    grid-column: span 2;
+}
+
+/* Special Keys */
+.key-space {
+    grid-column: span 12;
+}
+
+.key-enter {
+    grid-column: span 4;
+}
+
+.key-shift {
+    grid-column: span 3;
+}
+
+/* Monitor Camera */
+.monitor-frame::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    border: 1px solid #333;
+    z-index: 2;
+}
+
+/* Monitor Power Button & LED */
+.monitor-frame::after {
     content: '';
     position: absolute;
     right: 20px;
@@ -130,9 +226,11 @@ body {
     border-radius: 50%;
     border: 2px solid #444;
     cursor: pointer;
+    z-index: 2;
 }
 
-.monitor-wrapper::after {
+/* Power LED */
+.monitor-screen::before {
     content: '';
     position: absolute;
     right: 40px;
@@ -143,6 +241,7 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 10px #00ff00;
     animation: blink 2s infinite;
+    z-index: 3;
 }
 
 /* Custom Scrollbar */
@@ -183,14 +282,8 @@ body {
     }
 }
 
-/* Screen Content Styling */
-.monitor-screen > * {
-    position: relative;
-    z-index: 2;
-}
-
 /* Screen Reflection */
-.monitor-frame::before {
+.monitor-frame::after {
     content: '';
     position: absolute;
     top: 0;
@@ -204,4 +297,21 @@ body {
         transparent 100%
     );
     pointer-events: none;
+}
+
+/* Ambient Light Effect */
+.computer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 255, 0, 0.03) 0%,
+        transparent 60%
+    );
+    pointer-events: none;
+    opacity: 0.5;
 }
